@@ -1,5 +1,4 @@
-SFMVC = SFMVC || {};
-class SFMVC.Model
+class SFMVC.Model extends Base
     allowedEvents = {
         ADDED: 'added',
         REMOVED: 'removed',
@@ -36,3 +35,7 @@ class SFMVC.Model
             @events[ev] = []
         @events[ev].push hd
         undefined
+
+    ## In future hash the attributes to an attribute Object type implement object
+    toJson: =>
+        @attributes

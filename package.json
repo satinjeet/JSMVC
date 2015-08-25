@@ -1,0 +1,19 @@
+{
+  "name": "SF-MVC-JS",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "codo": "~2.0.11"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-coffee": "~0.13.0",
+    "grunt-contrib-jasmine": "~0.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}

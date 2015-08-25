@@ -1,5 +1,4 @@
-SFMVC = SFMVC || {};
-class SFMVC.Collection
+class SFMVC.Collection extends Base
     allowedEvents = {
         ADDED: 'added',
         REMOVED: 'removed',
