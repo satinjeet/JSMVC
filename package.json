@@ -1,7 +1,7 @@
 {
   "name": "SF-MVC-JS",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "A simple JS MVC implementation",
   "main": "index.html",
   "dependencies": {
     "codo": "~2.0.11"
@@ -14,6 +14,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "BSD-2-Clause"
+  "author": "satin",
+  "license": "BSD-2-Clause",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/satinjeet/JSMVC.git"
+  },
+  "keywords": [
+    "JS",
+    "javascript",
+    "MVC",
+    "backbone",
+    "satin"
+  ],
+  "bugs": {
+    "url": "https://github.com/satinjeet/JSMVC/issues"
+  }
 }
