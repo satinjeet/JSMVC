@@ -48,6 +48,7 @@ SFMVC.Model = (function(superClass) {
   function Model(attributes, options) {
     this.attributes = attributes != null ? attributes : {};
     this.options = options != null ? options : {};
+    this.plugin = bind(this.plugin, this);
     this.toJson = bind(this.toJson, this);
     this.on = bind(this.on, this);
     this.setSingle = bind(this.setSingle, this);
@@ -102,6 +103,35 @@ SFMVC.Model = (function(superClass) {
 
   Model.prototype.toJson = function() {
     return this.attributes;
+  };
+
+  Model.prototype.plugin = function(plugins, ovverride) {
+    var i, isArray, len, plugin, results;
+    if (ovverride == null) {
+      ovverride = false;
+    }
+    isArray = plugins instanceof Array;
+    if (!isArray) {
+      plugins = [plugins];
+    }
+    results = [];
+    for (i = 0, len = plugins.length; i < len; i++) {
+      plugin = plugins[i];
+      if (this.hasOwnProperty(plugin.name)) {
+        if (ovverride) {
+          results.push(Object.defineProperty(this, plugin.name, {
+            value: plugin.def
+          }));
+        } else {
+          results.push(void 0);
+        }
+      } else {
+        results.push(Object.defineProperty(this, plugin.name, {
+          value: plugin.def
+        }));
+      }
+    }
+    return results;
   };
 
   return Model;
