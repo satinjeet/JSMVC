@@ -1,8 +1,10 @@
-var SFMVC, end, exports, start, suite, time;
+var Model, SFMVC, end, exports, start, suite, time;
 
 exports = require("../build/mvc/sf.mvc.js");
 
 SFMVC = exports.SFMVC;
+
+Model = SFMVC.Model;
 
 suite = "Suite 1";
 

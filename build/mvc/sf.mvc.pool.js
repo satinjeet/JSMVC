@@ -9,21 +9,12 @@ SFMVC = new ((function() {
 
 })());
 
-var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
 
-SFMVC.extend = function(obj1, obj2) {
-  return extend(obj2, obj1);
-};
 
 var Base;
 
 Base = (function() {
   function Base() {}
-
-  Base.extend = function(obj) {
-    return SFMVC.extend(obj, new this);
-  };
 
   return Base;
 
@@ -38,12 +29,35 @@ SFMVC.Model = (function(superClass) {
 
   extend(Model, superClass);
 
+  Model.extend = function(obj) {
+    var child, k, v;
+    child = (function(superClass1) {
+      extend(child, superClass1);
+
+      function child() {
+        return child.__super__.constructor.apply(this, arguments);
+      }
+
+      return child;
+
+    })(SFMVC.Model);
+    for (k in obj) {
+      v = obj[k];
+      child.prototype[k] = v;
+    }
+    return child;
+  };
+
   allowedEvents = {
     ADDED: 'added',
     REMOVED: 'removed',
     UPDATED: 'updated',
     CHANGED: 'changed'
   };
+
+  Model.prototype.idAttribute = 'id';
+
+  Model.prototype.id = void 0;
 
   function Model(attributes, options) {
     this.attributes = attributes != null ? attributes : {};
@@ -54,6 +68,9 @@ SFMVC.Model = (function(superClass) {
     this.setSingle = bind(this.setSingle, this);
     this.set = bind(this.set, this);
     this.fire = bind(this.fire, this);
+    if (this.attributes[this.idAttribute]) {
+      this.id = this.attributes[this.idAttribute];
+    }
     this.events = {};
     this;
   }

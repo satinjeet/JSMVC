@@ -1,4 +1,11 @@
 class SFMVC.Model extends Base
+
+    @extend = (obj)->
+        class child extends SFMVC.Model
+        for k,v of obj
+            child.prototype[k] = v
+        child
+
     allowedEvents = {
         ADDED: 'added',
         REMOVED: 'removed',
@@ -6,7 +13,12 @@ class SFMVC.Model extends Base
         CHANGED: 'changed',
     }
 
+    idAttribute: 'id'
+    id: undefined
+
     constructor: (@attributes = {}, @options = {})->
+        if @attributes[@idAttribute]
+            @id = @attributes[@idAttribute]
         @events = {}
         @
 

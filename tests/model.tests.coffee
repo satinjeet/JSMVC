@@ -1,5 +1,6 @@
 exports = require "../build/mvc/sf.mvc.js"
 SFMVC = exports.SFMVC
+Model = SFMVC.Model
 
 suite = "Suite 1"
 console.log "**** Starting Model Tests *****"
